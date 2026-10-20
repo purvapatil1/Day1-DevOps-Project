@@ -1,0 +1,33 @@
+name: Day 2 - File Validation
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          echo "Starting file validation..."
+
+          if [ -f README.md ]; then
+            echo "SUCCESS: README.md exists"
+          else
+            echo "ERROR: README.md is missing"
+            exit 1
+          fi
+
+          if [ -f index.html ]; then
+            echo "SUCCESS: index.html exists"
+          else
+            echo "ERROR: index.html is missing"
+            exit 1
+          fi
+
+          echo "All required files validated!"
