@@ -14,11 +14,9 @@ jobs:
 
       - name: Check required files
         run: |
-          echo "Starting file validation..."
-
-          test -f README.md || { echo "ERROR: README.md is missing"; exit 1; }
-          test -f app/index.html || { echo "ERROR: app/index.html is missing"; exit 1; }
-
+          test -f README.md
+          test -f index.html
+          test -f app/index.html
           echo "SUCCESS: All required files exist!"
 
       - name: Validate HTML heading
