@@ -1,4 +1,4 @@
-name: Day 2 - File Validation
+name: Day 2 - File and HTML Validation
 
 on:
   push:
@@ -16,18 +16,12 @@ jobs:
         run: |
           echo "Starting file validation..."
 
-          if [ -f README.md ]; then
-            echo "SUCCESS: README.md exists"
-          else
-            echo "ERROR: README.md is missing"
-            exit 1
-          fi
+          test -f README.md || { echo "ERROR: README.md is missing"; exit 1; }
+          test -f app/index.html || { echo "ERROR: app/index.html is missing"; exit 1; }
 
-          if [ -f index.html ]; then
-            echo "SUCCESS: index.html exists"
-          else
-            echo "ERROR: index.html is missing"
-            exit 1
-          fi
+          echo "SUCCESS: All required files exist!"
 
-          echo "All required files validated!"
+      - name: Validate HTML heading
+        run: |
+          grep -q '<h1>Hello, DevOps!</h1>' app/index.html
+          echo "SUCCESS: HTML heading validation passed!"
