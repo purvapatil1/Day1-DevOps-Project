@@ -22,5 +22,5 @@ jobs:
       - name: Validate HTML heading
         run: |
           set -e
-          grep -q '<h1>Wrong Heading</h1>' app/index.html
+          grep -q '<h1>Hello, DevOps!</h1>' app/index.html
           echo "SUCCESS: HTML heading validation passed!"
