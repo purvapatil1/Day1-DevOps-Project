@@ -1,4 +1,4 @@
-name: Day 2 - File and HTML Validation
+name: Day 4 - Enhanced HTML Validation
 
 on:
   push:
@@ -24,3 +24,10 @@ jobs:
           set -e
           grep -q '<h1>Hello, DevOps!</h1>' app/index.html
           echo "SUCCESS: HTML heading validation passed!"
+
+      - name: Validate heading count
+        run: |
+          count=$(grep -o '<h1>' app/index.html | wc -l)
+          echo "Found $count h1 heading(s)"
+          test "$count" -eq 1
+          echo "SUCCESS: Exactly one h1 heading found!"
