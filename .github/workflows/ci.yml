@@ -1,4 +1,5 @@
-name: Day 1 CI Pipeline
+name: Day 5 CI Pipeline
+
 on:
   push:
     branches: [main]
@@ -17,10 +18,8 @@ jobs:
         run: |
           test -f README.md
           test -f app/index.html
+          test -f scripts/validate.sh
           echo "All project files exist!"
 
-
-       - name: Validate HTML heading
-         run: |
-           grep -q '<h1>Hello, DevOps!</h1>' app/index.html
-           echo "html heading validation passed"
+      - name: Validate HTML heading
+        run: bash scripts/validate.sh
